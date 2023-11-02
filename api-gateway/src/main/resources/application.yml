@@ -1,0 +1,31 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: API-GATEWAY       #this will register with this name in eureka server.
+
+  cloud:
+    gateway:
+      routes:
+        - id: POST-SERVICE
+          uri: lb://POST-SERVICE
+          predicates:
+            - Path=/api/posts/**
+
+        - id: COMMENT-SERVICE      #now giving id comment service which means api gateway should be locate
+          uri: lb://COMMENT-SERVICE   # my comment service when incoming url which means incoming request is going to which port - comment service
+          predicates:                 #which is registered on eureka server 8082.
+            - Path=/api/comments/**
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+
+

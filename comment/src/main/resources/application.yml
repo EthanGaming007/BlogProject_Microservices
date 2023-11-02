@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: COMMENT-SERVICE
+  datasource:
+    url: jdbc:mysql://localhost:3306/commentdb
+    username: root
+    password: mukesh456
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+      dialect: org.hibernate.dialect.MySQL8Dialect
+
+server:
+  port: 8082
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true      # it will fetch the registry details, it is a client that's why it is true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  # Instead of properties file we can use yml file for configuration .
+  # this is also called configuration file.
+  # some developers said it will remove the rededensy;
+  # the alignment should be proper otherwise it will show error.
+  # We can also use application.properties instead of this
+  # rededensy means we don't have to use same line again, and again it will remove the repetition of lines
+
+  # what dialect does?
+  # it writes the HQL(Hibernate Query Language) queries which is similar to Sql queries
+  # who is generating HQL - Hibernate
+  # what kind of HQL it has to be generate depends on database
+  # which database it has to generate which HQL - Dialect information

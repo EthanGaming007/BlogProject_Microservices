@@ -1,0 +1,8 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false  # it is a server it is not a client,client will register with the server,server will not register with the client.
+    fetch-registry: false        #it is also a server.
+server:
+  port: 8761
